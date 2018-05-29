@@ -34,7 +34,7 @@ class ValidateInvitationsCommand extends Command
     public function handle()
     {
         $model = SparkInvite::invitationModel();
-        $invitations = $model::whereHas('status', function ($query) {
+        $invitations = $model::whereHas('status', function ($query) use ($model) {
              $query->where('state', $model::STATUS_PENDING);
         })->get();
 

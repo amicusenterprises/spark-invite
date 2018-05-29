@@ -17,9 +17,8 @@ class CreateUserInvitationsTable extends Migration
     {
         Schema::create('user_invitations', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('invitee_id')->nullable();
-            $table->unsignedInteger('team_id');
-            $table->unsignedInteger('user_id')->nullable();
+            $table->uuid('invitee_id')->nullable();
+            $table->uuid('user_id')->nullable();
             $table->uuid('token')->nullable();
             $table->string('old_password', 60)->nullable();
             $table->json('data')->nullable();
@@ -27,9 +26,6 @@ class CreateUserInvitationsTable extends Migration
 
             // Indexes
             $table->index('token');
-            $table->foreign('invitee_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

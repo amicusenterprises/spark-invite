@@ -1,6 +1,8 @@
 ### Laravel ###
 .env
 
+.idea
+
 
 ### Composer and NPM ###
 composer.lock
